@@ -1,0 +1,1416 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.5 (Debian 11.5-1.pgdg90+1)
+-- Dumped by pg_dump version 11.5 (Debian 11.5-1.pgdg90+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: admin; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.admin (
+    id bigint NOT NULL,
+    account text NOT NULL,
+    password text NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE public.admin OWNER TO postgres;
+
+--
+-- Name: admin_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.admin_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.admin_id_seq OWNER TO postgres;
+
+--
+-- Name: admin_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.admin_id_seq OWNED BY public.admin.id;
+
+
+--
+-- Name: assistant; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.assistant (
+    id bigint NOT NULL,
+    account text NOT NULL,
+    password text NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE public.assistant OWNER TO postgres;
+
+--
+-- Name: assistant_course; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.assistant_course (
+    assistant_id bigint NOT NULL,
+    course_id bigint NOT NULL
+);
+
+
+ALTER TABLE public.assistant_course OWNER TO postgres;
+
+--
+-- Name: assistant_course_assistant_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.assistant_course_assistant_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.assistant_course_assistant_id_seq OWNER TO postgres;
+
+--
+-- Name: assistant_course_assistant_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.assistant_course_assistant_id_seq OWNED BY public.assistant_course.assistant_id;
+
+
+--
+-- Name: assistant_course_course_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.assistant_course_course_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.assistant_course_course_id_seq OWNER TO postgres;
+
+--
+-- Name: assistant_course_course_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.assistant_course_course_id_seq OWNED BY public.assistant_course.course_id;
+
+
+--
+-- Name: assistant_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.assistant_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.assistant_id_seq OWNER TO postgres;
+
+--
+-- Name: assistant_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.assistant_id_seq OWNED BY public.assistant.id;
+
+
+--
+-- Name: copy; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.copy (
+    id bigint NOT NULL,
+    problem_id bigint NOT NULL,
+    student_one_account text NOT NULL,
+    student_two_account text NOT NULL,
+    similarity double precision NOT NULL
+);
+
+
+ALTER TABLE public.copy OWNER TO postgres;
+
+--
+-- Name: copy_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.copy_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.copy_id_seq OWNER TO postgres;
+
+--
+-- Name: copy_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.copy_id_seq OWNED BY public.copy.id;
+
+
+--
+-- Name: copy_problem_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.copy_problem_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.copy_problem_id_seq OWNER TO postgres;
+
+--
+-- Name: copy_problem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.copy_problem_id_seq OWNED BY public.copy.problem_id;
+
+
+--
+-- Name: course; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.course (
+    id bigint NOT NULL,
+    teacher_id bigint NOT NULL,
+    name text NOT NULL,
+    semester text NOT NULL
+);
+
+
+ALTER TABLE public.course OWNER TO postgres;
+
+--
+-- Name: course_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.course_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.course_id_seq OWNER TO postgres;
+
+--
+-- Name: course_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.course_id_seq OWNED BY public.course.id;
+
+
+--
+-- Name: course_teacher_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.course_teacher_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.course_teacher_id_seq OWNER TO postgres;
+
+--
+-- Name: course_teacher_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.course_teacher_id_seq OWNED BY public.course.teacher_id;
+
+
+--
+-- Name: feedback; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.feedback (
+    id bigint NOT NULL,
+    course_id bigint NOT NULL,
+    student_id bigint NOT NULL,
+    date date NOT NULL,
+    content text NOT NULL
+);
+
+
+ALTER TABLE public.feedback OWNER TO postgres;
+
+--
+-- Name: feedback_course_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.feedback_course_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.feedback_course_id_seq OWNER TO postgres;
+
+--
+-- Name: feedback_course_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.feedback_course_id_seq OWNED BY public.feedback.course_id;
+
+
+--
+-- Name: feedback_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.feedback_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.feedback_id_seq OWNER TO postgres;
+
+--
+-- Name: feedback_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.feedback_id_seq OWNED BY public.feedback.id;
+
+
+--
+-- Name: feedback_student_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.feedback_student_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.feedback_student_id_seq OWNER TO postgres;
+
+--
+-- Name: feedback_student_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.feedback_student_id_seq OWNED BY public.feedback.student_id;
+
+
+--
+-- Name: judge; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.judge (
+    id bigint NOT NULL,
+    problem_id bigint NOT NULL,
+    student_id bigint NOT NULL,
+    rate double precision NOT NULL,
+    history_codes json NOT NULL
+);
+
+
+ALTER TABLE public.judge OWNER TO postgres;
+
+--
+-- Name: judge_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.judge_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.judge_id_seq OWNER TO postgres;
+
+--
+-- Name: judge_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.judge_id_seq OWNED BY public.judge.id;
+
+
+--
+-- Name: judge_problem_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.judge_problem_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.judge_problem_id_seq OWNER TO postgres;
+
+--
+-- Name: judge_problem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.judge_problem_id_seq OWNED BY public.judge.problem_id;
+
+
+--
+-- Name: judge_student_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.judge_student_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.judge_student_id_seq OWNER TO postgres;
+
+--
+-- Name: judge_student_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.judge_student_id_seq OWNED BY public.judge.student_id;
+
+
+--
+-- Name: problem; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.problem (
+    id bigint NOT NULL,
+    course_id bigint NOT NULL,
+    name text NOT NULL,
+    type text NOT NULL,
+    category text NOT NULL,
+    tag text[] NOT NULL,
+    rate double precision NOT NULL,
+    description text NOT NULL,
+    input_desc text NOT NULL,
+    output_desc text NOT NULL,
+    test_cases json NOT NULL,
+    deadline date NOT NULL,
+    correct_num integer NOT NULL,
+    incorrect_num integer NOT NULL,
+    correct_rate double precision NOT NULL,
+    best_student_account text,
+    pattern text[]
+);
+
+
+ALTER TABLE public.problem OWNER TO postgres;
+
+--
+-- Name: problem_bank; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.problem_bank (
+    id bigint NOT NULL,
+    name text NOT NULL,
+    category text NOT NULL,
+    tag text[] NOT NULL,
+    description text NOT NULL,
+    input_desc text NOT NULL,
+    output_desc text NOT NULL,
+    test_cases json NOT NULL
+);
+
+
+ALTER TABLE public.problem_bank OWNER TO postgres;
+
+--
+-- Name: problem_bank_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.problem_bank_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.problem_bank_id_seq OWNER TO postgres;
+
+--
+-- Name: problem_bank_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.problem_bank_id_seq OWNED BY public.problem_bank.id;
+
+
+--
+-- Name: problem_course_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.problem_course_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.problem_course_id_seq OWNER TO postgres;
+
+--
+-- Name: problem_course_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.problem_course_id_seq OWNED BY public.problem.course_id;
+
+
+--
+-- Name: problem_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.problem_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.problem_id_seq OWNER TO postgres;
+
+--
+-- Name: problem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.problem_id_seq OWNED BY public.problem.id;
+
+
+--
+-- Name: student; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.student (
+    id bigint NOT NULL,
+    account text NOT NULL,
+    password text NOT NULL,
+    name text NOT NULL,
+    student_class text NOT NULL
+);
+
+
+ALTER TABLE public.student OWNER TO postgres;
+
+--
+-- Name: student_course; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.student_course (
+    student_id bigint NOT NULL,
+    course_id bigint NOT NULL
+);
+
+
+ALTER TABLE public.student_course OWNER TO postgres;
+
+--
+-- Name: student_course_course_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.student_course_course_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.student_course_course_id_seq OWNER TO postgres;
+
+--
+-- Name: student_course_course_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.student_course_course_id_seq OWNED BY public.student_course.course_id;
+
+
+--
+-- Name: student_course_student_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.student_course_student_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.student_course_student_id_seq OWNER TO postgres;
+
+--
+-- Name: student_course_student_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.student_course_student_id_seq OWNED BY public.student_course.student_id;
+
+
+--
+-- Name: student_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.student_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.student_id_seq OWNER TO postgres;
+
+--
+-- Name: student_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.student_id_seq OWNED BY public.student.id;
+
+
+--
+-- Name: teacher; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.teacher (
+    id bigint NOT NULL,
+    account text NOT NULL,
+    password text NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE public.teacher OWNER TO postgres;
+
+--
+-- Name: teacher_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.teacher_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.teacher_id_seq OWNER TO postgres;
+
+--
+-- Name: teacher_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.teacher_id_seq OWNED BY public.teacher.id;
+
+
+--
+-- Name: team; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.team (
+    id bigint NOT NULL,
+    problem_id bigint NOT NULL,
+    account text NOT NULL,
+    corrected_account json NOT NULL,
+    comment_result json NOT NULL,
+    teacher_comment_result json
+);
+
+
+ALTER TABLE public.team OWNER TO postgres;
+
+--
+-- Name: team_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.team_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.team_id_seq OWNER TO postgres;
+
+--
+-- Name: team_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.team_id_seq OWNED BY public.team.id;
+
+
+--
+-- Name: team_problem_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.team_problem_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.team_problem_id_seq OWNER TO postgres;
+
+--
+-- Name: team_problem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.team_problem_id_seq OWNED BY public.team.problem_id;
+
+
+--
+-- Name: admin id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.admin ALTER COLUMN id SET DEFAULT nextval('public.admin_id_seq'::regclass);
+
+
+--
+-- Name: assistant id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.assistant ALTER COLUMN id SET DEFAULT nextval('public.assistant_id_seq'::regclass);
+
+
+--
+-- Name: assistant_course assistant_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.assistant_course ALTER COLUMN assistant_id SET DEFAULT nextval('public.assistant_course_assistant_id_seq'::regclass);
+
+
+--
+-- Name: assistant_course course_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.assistant_course ALTER COLUMN course_id SET DEFAULT nextval('public.assistant_course_course_id_seq'::regclass);
+
+
+--
+-- Name: copy id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.copy ALTER COLUMN id SET DEFAULT nextval('public.copy_id_seq'::regclass);
+
+
+--
+-- Name: copy problem_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.copy ALTER COLUMN problem_id SET DEFAULT nextval('public.copy_problem_id_seq'::regclass);
+
+
+--
+-- Name: course id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.course ALTER COLUMN id SET DEFAULT nextval('public.course_id_seq'::regclass);
+
+
+--
+-- Name: course teacher_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.course ALTER COLUMN teacher_id SET DEFAULT nextval('public.course_teacher_id_seq'::regclass);
+
+
+--
+-- Name: feedback id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.feedback ALTER COLUMN id SET DEFAULT nextval('public.feedback_id_seq'::regclass);
+
+
+--
+-- Name: feedback course_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.feedback ALTER COLUMN course_id SET DEFAULT nextval('public.feedback_course_id_seq'::regclass);
+
+
+--
+-- Name: feedback student_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.feedback ALTER COLUMN student_id SET DEFAULT nextval('public.feedback_student_id_seq'::regclass);
+
+
+--
+-- Name: judge id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.judge ALTER COLUMN id SET DEFAULT nextval('public.judge_id_seq'::regclass);
+
+
+--
+-- Name: judge problem_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.judge ALTER COLUMN problem_id SET DEFAULT nextval('public.judge_problem_id_seq'::regclass);
+
+
+--
+-- Name: judge student_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.judge ALTER COLUMN student_id SET DEFAULT nextval('public.judge_student_id_seq'::regclass);
+
+
+--
+-- Name: problem id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.problem ALTER COLUMN id SET DEFAULT nextval('public.problem_id_seq'::regclass);
+
+
+--
+-- Name: problem course_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.problem ALTER COLUMN course_id SET DEFAULT nextval('public.problem_course_id_seq'::regclass);
+
+
+--
+-- Name: problem_bank id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.problem_bank ALTER COLUMN id SET DEFAULT nextval('public.problem_bank_id_seq'::regclass);
+
+
+--
+-- Name: student id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student ALTER COLUMN id SET DEFAULT nextval('public.student_id_seq'::regclass);
+
+
+--
+-- Name: student_course student_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_course ALTER COLUMN student_id SET DEFAULT nextval('public.student_course_student_id_seq'::regclass);
+
+
+--
+-- Name: student_course course_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_course ALTER COLUMN course_id SET DEFAULT nextval('public.student_course_course_id_seq'::regclass);
+
+
+--
+-- Name: teacher id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.teacher ALTER COLUMN id SET DEFAULT nextval('public.teacher_id_seq'::regclass);
+
+
+--
+-- Name: team id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.team ALTER COLUMN id SET DEFAULT nextval('public.team_id_seq'::regclass);
+
+
+--
+-- Name: team problem_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.team ALTER COLUMN problem_id SET DEFAULT nextval('public.team_problem_id_seq'::regclass);
+
+
+--
+-- Data for Name: admin; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.admin (id, account, password, name) FROM stdin;
+1	999999	0000	管理員
+\.
+
+
+--
+-- Data for Name: assistant; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.assistant (id, account, password, name) FROM stdin;
+1	111111	0000	助教
+2	222222	0000	助教2
+\.
+
+
+--
+-- Data for Name: assistant_course; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.assistant_course (assistant_id, course_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: copy; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.copy (id, problem_id, student_one_account, student_two_account, similarity) FROM stdin;
+\.
+
+
+--
+-- Data for Name: course; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.course (id, teacher_id, name, semester) FROM stdin;
+\.
+
+
+--
+-- Data for Name: feedback; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.feedback (id, course_id, student_id, date, content) FROM stdin;
+\.
+
+
+--
+-- Data for Name: judge; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.judge (id, problem_id, student_id, rate, history_codes) FROM stdin;
+\.
+
+
+--
+-- Data for Name: problem; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.problem (id, course_id, name, type, category, tag, rate, description, input_desc, output_desc, test_cases, deadline, correct_num, incorrect_num, correct_rate, best_student_account, pattern) FROM stdin;
+\.
+
+
+--
+-- Data for Name: problem_bank; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.problem_bank (id, name, category, tag, description, input_desc, output_desc, test_cases) FROM stdin;
+10	Chapter1-1	輸入輸出	{Python}	請撰寫一程式，請使用者輸入華氏溫度，然後輸出其對應的攝氏溫度並四捨五入到小數點第二位。\n提示：攝氏溫度=(華氏溫度-32)*5/9	使用者輸入華氏溫度。	輸出其對應的攝氏溫度並四捨五入到小數點第二位。	[{"inputSample":"212","outputSample":"Fahrenheit 212 ---> Celsius 100.00"},{"inputSample":"123","outputSample":"Fahrenheit 123 ---> Celsius 50.56"},{"inputSample":"1","outputSample":"Fahrenheit 1 ---> Celsius -17.22"}]
+11	Chpater1-2	輸入輸出	{Python}	請撰寫一程式，以下公式計算五邊形的面積：\n$area = \\frac{5s^2}{4tan(\\pi/5)}$，其中$s=2rsin(\\pi/5)$，r為五邊形的中心點到頂點的距離。請使用者輸入r，然後計算五邊形的面積（輸出到四捨五入小數點後兩位）。	使用者輸入r。	計算五邊形的面積（輸出到四捨五入小數點後兩位）。	[{"inputSample":"5.5","outputSample":"Area is 37.97"},{"inputSample":"100","outputSample":"Area is 2510.14"}]
+12	Chapter1-3	輸入輸出	{Python}	依序輸入飛機的加速度a，以及起飛的速度v，在不考慮外力損耗下(如輪胎摩擦力、空氣阻力等)，則要讓飛機起飛的最短跑道長度為$length=v^2/2a$。\n試撰寫一程式，提示使用者輸入以公尺/秒為單位的速度V，以及以公尺/秒平方為單位的加速度a，然後輸出最短的跑道長度(輸出到四捨五入小數點後2位)。	使用者依序輸入以公尺/秒為單位的速度V，以及以公尺/秒平方為單位的加速度a	輸出最短的跑道長度(輸出到四捨五入小數點後2位)。	[{"inputSample":"70\\n4.3","outputSample":"Minimum runway lengt is 569.77 meters"},{"inputSample":"80\\n5","outputSample":"640.00"},{"inputSample":"11\\n1.98","outputSample":"30.56"}]
+13	Chapter1-4	輸入輸出	{Python}	請撰寫一程式，計算從起始溫度到最後溫度時熱水所需要的能量。在程式中提示使用者輸入熱水量(公斤)、起始溫度與最後溫度。計算能量的公式如下：\nQ = M * (finalT - initialT) * 4184\n其中M是熱水的公斤數，finalT是最後溫度，initialT是起始溫度，Q是以焦耳(joules)來衡量的能量(輸出到四捨五入小數點後兩位)。	使用者依序輸入熱水量(公斤)、起始溫度與最後溫度。	輸出能量(四捨五入小數點後兩位)。	[{"inputSample":"10\\n12\\n100","outputSample":"Q = 3681920.00"},{"inputSample":"5\\n11.123\\n88.89","outputSample":"Q = 1626885.64"},{"inputSample":"9\\n-13\\n45.89","outputSample":"Q = 2217561.84"}]
+14	Chapter1-5	輸入輸出	{Python}	請撰寫一程式，計算圓柱體的底面積和體積(輸出到四捨五入小數點後兩位)。在程式中提示使用者輸入圓柱的半徑和高。\n$area=\\pi r^2$\n$volume=area*height$\n其中area是底面積，volume是體積，r是圓柱體的半徑，height是圓柱體的高度。	使用者依序輸入圓柱的半徑和高。	計算圓柱體的底面積和體積(輸出到四捨五入小數點後兩位)。	[{"inputSample":"6.5\\n10","outputSample":"area:132.73, volume:1327.32"},{"inputSample":"3.3\\n12","outputSample":"area:34.21, volume:410.54"}]
+\.
+
+
+--
+-- Data for Name: student; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.student (id, account, password, name, student_class) FROM stdin;
+1	04156211	0000	陳冠億	104資管B
+2	04156141	0000	陳以妮	104資管A
+32	03156173	0000	梁子祺	103資管A
+33	03156181	0000	張逸威	103資管A
+34	03156261	0000	曾育婷	103資管B
+35	04154228	0000	洪鈺婷	104國貿B
+36	04156254	0000	范晏寧	104資管B
+37	05121147	0000	李佳蒨	105英文A
+38	05151137	0000	侯鈞宸	105經濟A
+39	05151186	0000	陳冠廷	105經濟A
+40	05151256	0000	蔡孝岳	105經濟B
+41	05156290	0000	林珈萱	105資管B
+42	06115143	0000	潘心婕	106資管A
+43	06153128	0000	蘇佳寶	106企管A
+44	06156109	0000	陳怡潔	106資管A
+45	06156204	0000	彭世宇	106資管B
+46	06156245	0000	施心豪	106資管B
+47	07156101	0000	林怡	107資管A
+48	07156102	0000	陳亭妤	107資管A
+49	07156103	0000	吳瑞	107資管A
+50	07156105	0000	姚玨安	107資管A
+51	07156106	0000	周竑宇	107資管A
+52	07156107	0000	熊敏媗	107資管A
+53	07156108	0000	施哲凱	107資管A
+54	07156109	0000	林柏妤	107資管A
+55	07156110	0000	黃發祥	107資管A
+56	07156111	0000	邱凡洺	107資管A
+57	07156115	0000	黃朝朋	107資管A
+58	07156117	0000	許沛涵	107資管A
+59	07156118	0000	蔡佳文	107資管A
+60	07156119	0000	林溢	107資管A
+61	07156120	0000	侯玟瑜	107資管A
+62	07156121	0000	楊典軒	107資管A
+63	07156122	0000	林虹廷	107資管A
+64	07156123	0000	林廷瀚	107資管A
+65	07156124	0000	黃子恩	107資管A
+66	07156126	0000	郭育維	107資管A
+67	07156127	0000	林鈺倫	107資管A
+68	07156128	0000	陳澤文	107資管A
+69	07156129	0000	王健安	107資管A
+70	07156130	0000	史博宇	107資管A
+71	07156131	0000	趙品翰	107資管A
+72	07156132	0000	吳佳霖	107資管A
+73	07156133	0000	廖村檉	107資管A
+74	07156134	0000	呂翰昇	107資管A
+75	07156135	0000	陳昀昊	107資管A
+76	07156136	0000	李宣諭	107資管A
+77	07156137	0000	武宣至	107資管A
+78	07156138	0000	葉姿伶	107資管A
+79	07156139	0000	陳薏涵	107資管A
+80	07156140	0000	胡志碩	107資管A
+81	07156142	0000	林哲逵	107資管A
+82	07156143	0000	黃宣淜	107資管A
+83	07156144	0000	游絲喬	107資管A
+84	07156145	0000	黃子豪	107資管A
+85	07156146	0000	林俐均	107資管A
+86	07156147	0000	侯允禔	107資管A
+87	07156148	0000	劉冠瑩	107資管A
+88	07156149	0000	宋婉嫈	107資管A
+89	07156150	0000	劉雨晴	107資管A
+90	07156151	0000	陳羿丞	107資管A
+91	07156152	0000	蔡易君	107資管A
+92	07156153	0000	周庭毅	107資管A
+93	07156154	0000	張柏榮	107資管A
+94	07156155	0000	江汶靜	107資管A
+95	07156157	0000	王韋凱	107資管A
+96	07156158	0000	李晨熙	107資管A
+97	07156159	0000	江宇彤	107資管A
+98	07156160	0000	呂陳	107資管A
+99	07156171	0000	林凱怡	107資管A
+3	04156147	0000	大蔥鴨	104英文A
+\.
+
+
+--
+-- Data for Name: student_course; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.student_course (student_id, course_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: teacher; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.teacher (id, account, password, name) FROM stdin;
+1	teacher	teacher123	教授
+\.
+
+
+--
+-- Data for Name: team; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.team (id, problem_id, account, corrected_account, comment_result, teacher_comment_result) FROM stdin;
+\.
+
+
+--
+-- Name: admin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.admin_id_seq', 9, true);
+
+
+--
+-- Name: assistant_course_assistant_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.assistant_course_assistant_id_seq', 1, false);
+
+
+--
+-- Name: assistant_course_course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.assistant_course_course_id_seq', 1, false);
+
+
+--
+-- Name: assistant_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.assistant_id_seq', 9, true);
+
+
+--
+-- Name: copy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.copy_id_seq', 2, true);
+
+
+--
+-- Name: copy_problem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.copy_problem_id_seq', 1, false);
+
+
+--
+-- Name: course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.course_id_seq', 34, true);
+
+
+--
+-- Name: course_teacher_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.course_teacher_id_seq', 1, false);
+
+
+--
+-- Name: feedback_course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.feedback_course_id_seq', 1, false);
+
+
+--
+-- Name: feedback_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.feedback_id_seq', 2, true);
+
+
+--
+-- Name: feedback_student_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.feedback_student_id_seq', 1, false);
+
+
+--
+-- Name: judge_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.judge_id_seq', 22, true);
+
+
+--
+-- Name: judge_problem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.judge_problem_id_seq', 1, false);
+
+
+--
+-- Name: judge_student_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.judge_student_id_seq', 1, false);
+
+
+--
+-- Name: problem_bank_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.problem_bank_id_seq', 14, true);
+
+
+--
+-- Name: problem_course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.problem_course_id_seq', 3, true);
+
+
+--
+-- Name: problem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.problem_id_seq', 34, true);
+
+
+--
+-- Name: student_course_course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.student_course_course_id_seq', 1, true);
+
+
+--
+-- Name: student_course_student_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.student_course_student_id_seq', 1, false);
+
+
+--
+-- Name: student_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.student_id_seq', 99, true);
+
+
+--
+-- Name: teacher_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.teacher_id_seq', 39, true);
+
+
+--
+-- Name: team_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.team_id_seq', 28, true);
+
+
+--
+-- Name: team_problem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.team_problem_id_seq', 1, false);
+
+
+--
+-- Name: admin admin_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.admin
+    ADD CONSTRAINT admin_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: assistant_course assistant_course_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.assistant_course
+    ADD CONSTRAINT assistant_course_pkey PRIMARY KEY (assistant_id, course_id);
+
+
+--
+-- Name: assistant assistant_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.assistant
+    ADD CONSTRAINT assistant_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: copy copy_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.copy
+    ADD CONSTRAINT copy_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: course course_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.course
+    ADD CONSTRAINT course_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: feedback feedback_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.feedback
+    ADD CONSTRAINT feedback_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: judge judge_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.judge
+    ADD CONSTRAINT judge_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: problem_bank problem_bank_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.problem_bank
+    ADD CONSTRAINT problem_bank_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: problem problem_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.problem
+    ADD CONSTRAINT problem_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: student_course student_course_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_course
+    ADD CONSTRAINT student_course_pkey PRIMARY KEY (student_id, course_id);
+
+
+--
+-- Name: student student_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student
+    ADD CONSTRAINT student_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: teacher teacher_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.teacher
+    ADD CONSTRAINT teacher_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: team team_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.team
+    ADD CONSTRAINT team_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: assistant_course assistant_course_assistant_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.assistant_course
+    ADD CONSTRAINT assistant_course_assistant_id_fk FOREIGN KEY (assistant_id) REFERENCES public.assistant(id);
+
+
+--
+-- Name: assistant_course assistant_course_course_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.assistant_course
+    ADD CONSTRAINT assistant_course_course_id_fk FOREIGN KEY (course_id) REFERENCES public.course(id);
+
+
+--
+-- Name: copy copy_problem_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.copy
+    ADD CONSTRAINT copy_problem_id_fk FOREIGN KEY (problem_id) REFERENCES public.problem(id);
+
+
+--
+-- Name: course course_teacher_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.course
+    ADD CONSTRAINT course_teacher_id_fk FOREIGN KEY (teacher_id) REFERENCES public.teacher(id);
+
+
+--
+-- Name: feedback feedback_course_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.feedback
+    ADD CONSTRAINT feedback_course_id_fk FOREIGN KEY (course_id) REFERENCES public.course(id);
+
+
+--
+-- Name: feedback feedback_student_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.feedback
+    ADD CONSTRAINT feedback_student_id_fk FOREIGN KEY (student_id) REFERENCES public.student(id);
+
+
+--
+-- Name: judge judge_problem_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.judge
+    ADD CONSTRAINT judge_problem_id_fk FOREIGN KEY (problem_id) REFERENCES public.problem(id);
+
+
+--
+-- Name: judge judge_student_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.judge
+    ADD CONSTRAINT judge_student_id_fk FOREIGN KEY (student_id) REFERENCES public.student(id);
+
+
+--
+-- Name: problem problem_course_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.problem
+    ADD CONSTRAINT problem_course_id_fk FOREIGN KEY (course_id) REFERENCES public.course(id);
+
+
+--
+-- Name: student_course student_course_course_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_course
+    ADD CONSTRAINT student_course_course_id_fk FOREIGN KEY (course_id) REFERENCES public.course(id);
+
+
+--
+-- Name: student_course student_course_student_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.student_course
+    ADD CONSTRAINT student_course_student_id_fk FOREIGN KEY (student_id) REFERENCES public.student(id);
+
+
+--
+-- Name: team team_problem_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.team
+    ADD CONSTRAINT team_problem_id_fk FOREIGN KEY (problem_id) REFERENCES public.problem(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
